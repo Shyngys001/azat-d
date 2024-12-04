@@ -31,14 +31,14 @@ body {
 
 /* Контейнер */
 .container {
-    max-width: 350px;
+    max-width: 450px;
     margin: auto;
     padding: 20px;
-    background: rgba(54, 54, 54, 0.718);
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.474);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     position: relative;
+
 }
 
 /* Кнопки переключения языка */
@@ -80,11 +80,13 @@ body {
     font-size: 16px;
     color: #333;
     margin: 5px 0;
+
 }
 
 /* Таймер */
 .countdown {
     margin: 20px 0;
+    margin-bottom: 50px;
     text-align: center;
 }
 
@@ -187,6 +189,8 @@ body {
     align-items: center;
     gap: 40px;
     width: 40%;
+    margin-top: 50px;
+
 }
 
 /* Анимация плавного увеличения/уменьшения */
@@ -377,7 +381,7 @@ body {
 /* Детали события с бесконечной анимацией */
 .event-details {
     text-align: center;
-    margin-top: 20px;
+    margin-top:50px;
     font-family: 'Arial', sans-serif;
     color: #333;
     animation: fadeInSlideUp 5s ease-in-out infinite; /* Бесконечная анимация */
@@ -529,7 +533,7 @@ body {
 }
 
 .countdown .timer div {
-    background: #3b933f4f;
+    background: #03720360;
     padding: 10px;
     border-radius: 5px;
     margin: 0 5px;

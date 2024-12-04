@@ -242,3 +242,40 @@ function decrementGuests() {
         guestInput.value = 1;
     }
 }
+
+
+// Запуск конфетти при загрузке страницы
+window.onload = () => {
+    setTimeout(() => {
+        confetti({
+            particleCount: 100, // Количество частиц
+            startVelocity: 30, // Начальная скорость
+            spread: 360, // Угол разлёта
+            origin: {
+                x: 0.5, // Центр по горизонтали
+                y: 0,   // Начало сверху
+            },
+        });
+
+        // Больше конфетти через интервал
+        let duration = 5 * 1000; // 5 секунд
+        let animationEnd = Date.now() + duration;
+        let interval = setInterval(() => {
+            if (Date.now() > animationEnd) {
+                clearInterval(interval);
+            }
+            confetti({
+                particleCount: 50,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+            });
+            confetti({
+                particleCount: 50,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+            });
+        }, 250);
+    }, 500); // Задержка перед началом
+};
