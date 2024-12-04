@@ -1,19 +1,6 @@
 /* Общие стили */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
-.footer {
-    width: 100%;
-    text-align: center;
-    background-color: rgba(248, 248, 248, 0.9);
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    font-family: 'Montserrat', sans-serif;
-}
-.footer a {
-    color: #388e3c;
-    text-decoration: none;
-    font-weight: bold;
-}
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
