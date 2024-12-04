@@ -26,16 +26,7 @@
             <button id="lang-kz" class="lang-btn" onclick="switchLanguage('kz')">КЗ</button>
         </div>
 
-        <!-- Аудио -->
-        <div class="audio-player">
-            <audio id="background-audio" loop>
-                <source src="audio.mp3" type="audio/mp3">
-                Ваш браузер не поддерживает аудио.
-            </audio>
-            <button id="audio-control" onclick="toggleAudio()">
-                <span id="audio-icon" class="play-icon"></span>
-            </button>
-        </div>
+       
 
         <!-- Блок с контентом -->
         <section class="content">
@@ -92,10 +83,22 @@
                 </div>
             </div>
 
+             <!-- Аудио -->
+        
+
             <div class="address" data-animate>
                 <a href="https://go.2gis.com/zrhkz5">
                     <img src="2gis.png" alt="" class="gis">
                 </a>
+                <div class="audio-player">
+                    <audio id="background-audio" loop>
+                        <source src="audio.mp3" type="audio/mp3">
+                        Ваш браузер не поддерживает аудио.
+                    </audio>
+                    <button id="audio-control" onclick="toggleAudio()">
+                        <span id="audio-icon" class="play-icon"></span>
+                    </button>
+                </div>
             </div>
 
             <!-- Таймер -->

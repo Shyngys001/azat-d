@@ -27,6 +27,8 @@ body {
     z-index: -1;
 }
 
+
+
 /* Контейнер */
 .container {
     max-width: 350px;
@@ -173,12 +175,18 @@ body {
 
 /* Стиль для элемента .gis */
 .gis {
-    margin-top: 100px;
     width: 50px;
     border-radius: 9px;
     cursor: pointer;
     animation: pulse 2s infinite; /* Анимация плавного увеличения/уменьшения */
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* Плавные изменения */
+}
+.address {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    gap: 40px;
+    width: 40%;
 }
 
 /* Анимация плавного увеличения/уменьшения */
