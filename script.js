@@ -184,36 +184,59 @@ function toggleAudio() {
 
 // sheets
 // const scriptURL = 'https://script.google.com/macros/s/AKfycbxyz1234567890/exec';
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyGXhN8uwV7WpGuBv2o69gpEaPGDehH2QYlIbePjAq02SNp4iyDvknTznWI7qBdJ5GM/exec';
+// const scriptURL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzgMo1J3EVIuk6A_Hl5taFuPxEPsnT6V9XJHhEP682hYXkjiq28Ur4gZEenNWzLolIS/exec';
+// function submitForm(event) {
+//     event.preventDefault();
+
+//     const name = document.getElementById("name").value;
+//     const phone = document.getElementById("phone").value;
+//     const guests = document.getElementById("guests").value;
+
+//     const formData = { name, phone, guests };
+
+//     fetch(scriptURL, {
+//         method: "POST",
+//         body: JSON.stringify(formData),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     })
+//         .then(response => {
+//             if (!response.ok) throw new Error("Ошибка при отправке формы");
+//             return response.json();
+//         })
+//         .then(data => {
+//             console.log("Успешно отправлено:", data);
+//             alert("Форма отправлена успешно!");
+//         })
+//         .catch(error => {
+//             console.error("Ошибка:", error);
+//             alert("Ошибка при отправке формы.");
+//         });
+// }
+
+const proxyURL = 'https://mbdev.kz/proxy.php'; // URL вашего прокси
+
 function submitForm(event) {
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const guests = document.getElementById("guests").value;
+    const formData = new FormData(document.querySelector('form'));
 
-    const formData = { name, phone, guests };
-
-    fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-            "Content-Type": "application/json"
-        }
+    fetch(proxyURL, {
+        method: 'POST',
+        body: formData
     })
-        .then(response => {
-            if (!response.ok) throw new Error("Ошибка при отправке формы");
-            return response.json();
-        })
-        .then(data => {
-            console.log("Успешно отправлено:", data);
-            alert("Форма отправлена успешно!");
-        })
-        .catch(error => {
-            console.error("Ошибка:", error);
-            alert("Ошибка при отправке формы.");
-        });
+    .then(response => response.json())
+    .then(data => {
+        console.log("Успешно отправлено:", data);
+        alert("Форма отправлена успешно!");
+    })
+    .catch(error => {
+        console.error("Ошибка:", error);
+        alert("Ошибка при отправке формы.");
+    });
 }
+
 
 // Increment the number of guests
 function incrementGuests() {
