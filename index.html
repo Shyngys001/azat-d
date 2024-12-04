@@ -60,22 +60,24 @@
             </div>
 
             <!-- Форма подтверждения -->
-            <form class="rsvp-form" onsubmit="handleSubmit(event)">
-                <label for="name" id="name-label">Есіміңіз</label>
-                <input type="text" id="name" name="name" placeholder="Аты-жөніңіз" required>
+            <section class="form-section">
+                <form class="rsvp-form" onsubmit="handleSubmit(event)">
+                    <label for="name" id="name-label">Есіміңіз</label>
+                    <input type="text" id="name" name="name" placeholder="Аты-жөніңіз" required>
 
-                <label for="phone" id="phone-label">Телефон</label>
-                <input type="tel" id="phone" name="phone" placeholder="+7________" required>
+                    <label for="phone" id="phone-label">Телефон</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7________" required>
 
-                <label for="guests" id="guests-label">Қанша адам келесіздер?</label>
-                <div class="guest-counter">
-                    <button type="button" onclick="decrementGuests()">-</button>
-                    <input type="number" id="guests" name="guests" value="1" min="1">
-                    <button type="button" onclick="incrementGuests()">+</button>
-                </div>
+                    <label for="guests" id="guests-label">Қанша адам келесіздер?</label>
+                    <div class="guest-counter">
+                        <button type="button" onclick="decrementGuests()">-</button>
+                        <input type="number" id="guests" name="guests" value="1" min="1">
+                        <button type="button" onclick="incrementGuests()">+</button>
+                    </div>
 
-                <button type="submit" class="submit-btn" id="submit-btn">ЖІБЕРУ</button>
-            </form>
+                    <button type="submit" class="submit-btn" id="submit-btn">ЖІБЕРУ</button>
+                </form>
+            </section>
         </section>
     </div>
 

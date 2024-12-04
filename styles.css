@@ -117,7 +117,6 @@ body {
 
 /* Форма */
 .rsvp-form {
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -522,6 +521,7 @@ body {
 
 /* Форма */
 .form-section {
+    margin-top: 30px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid #ddd;
