@@ -95,3 +95,42 @@ function switchLanguage(lang) {
 // Инициализация
 switchLanguage("kz");
 startCountdown();
+
+
+
+function toggleAudio() {
+    const audio = document.getElementById('background-audio');
+    const controlButton = document.getElementById('audio-control');
+
+    if (audio.paused) {
+        audio.play();
+        controlButton.textContent = 'Пауза';
+    } else {
+        audio.pause();
+        controlButton.textContent = 'Воспроизвести';
+    }
+}
+
+// Запускаем аудио при загрузке страницы
+window.onload = () => {
+    const audio = document.getElementById('background-audio');
+    audio.play();
+};
+
+// Переключение воспроизведения/паузы
+function toggleAudio() {
+    const audio = document.getElementById('background-audio');
+    const audioIcon = document.getElementById('audio-icon');
+
+    if (audio.paused) {
+        audio.play()
+            .then(() => {
+                audioIcon.className = 'pause-icon'; // Меняем на паузу
+            })
+            .catch((err) => console.log('Ошибка при воспроизведении: ', err));
+    } else {
+        audio.pause();
+        audioIcon.className = 'play-icon'; // Меняем на плей
+    }
+}
+
