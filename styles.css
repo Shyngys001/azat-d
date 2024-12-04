@@ -326,7 +326,7 @@ body {
     right: 0;
 }
 
-/* Основной заголовок с анимацией появления */
+/* Основной заголовок с бесконечной анимацией */
 #main-title {
     font-size: 28px;
     font-weight: bold;
@@ -339,12 +339,10 @@ body {
     background: linear-gradient(to right, #2e7d32, #66bb6a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInSlideDown 1.2s ease-out forwards;
+    animation: fadeInSlideDown 3s ease-in-out infinite; /* Бесконечная анимация */
 }
 
-/* Подзаголовок с анимацией */
+/* Подзаголовок с бесконечной анимацией */
 #subtitle {
     font-size: 18px;
     font-weight: 400;
@@ -357,20 +355,16 @@ body {
     padding-left: 15px;
     max-width: 90%;
     margin: 0 auto 20px auto;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInSlideDown 1.5s ease-out forwards;
+    animation: fadeInSlideDown 4s ease-in-out infinite; /* Бесконечная анимация */
 }
 
-/* Детали события с плавным появлением */
+/* Детали события с бесконечной анимацией */
 .event-details {
     text-align: center;
     margin-top: 20px;
     font-family: 'Arial', sans-serif;
     color: #333;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInSlideUp 1.8s ease-out forwards;
+    animation: fadeInSlideUp 5s ease-in-out infinite; /* Бесконечная анимация */
 }
 
 .event-details p {
@@ -379,29 +373,42 @@ body {
     margin-bottom: 10px;
 }
 
-.event-details p strong {
-    font-weight: bold;
-    color: #2e7d32;
-    font-size: 16px;
-}
-
-/* Добавление рамки */
-.event-details p {
-    border: 1px solid #e0e0e0;
+/* Таймер с бесконечной пульсацией */
+.timer div {
+    background: linear-gradient(135deg, #388e3c, #66bb6a);
+    padding: 15px 10px;
     border-radius: 10px;
-    padding: 10px 15px;
-    background: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 10px auto;
-    max-width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff;
+    animation: pulse 2s ease-in-out infinite; /* Пульсация таймера */
 }
 
+/* Кнопка воспроизведения с бесконечным изменением цвета */
+#audio-control {
+    background: #388e3c;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: colorChange 3s ease-in-out infinite; /* Бесконечное изменение цвета */
+}
 
 /* Анимации */
+
+/* Плавное появление сверху */
 @keyframes fadeInSlideDown {
     0% {
-        opacity: 0;
-        transform: translateY(-20px);
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(0px);
     }
     100% {
         opacity: 1;
@@ -409,13 +416,128 @@ body {
     }
 }
 
+/* Плавное появление снизу */
 @keyframes fadeInSlideUp {
     0% {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(0px);
     }
     100% {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Пульсация элементов */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Изменение цвета кнопки */
+@keyframes colorChange {
+    0% {
+        background: #388e3c;
+    }
+    50% {
+        background: #66bb6a;
+    }
+    100% {
+        background: #388e3c;
+    }
+}
+
+/* Аудио */
+.audio-section {
+    padding: 20px 0;
+    background: rgba(56, 142, 60, 0.1);
+    text-align: center;
+}
+
+/* Заголовок */
+.header-section {
+    padding: 30px 0;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовок - основной */
+.header-section h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Заголовок - подзаголовок */
+.header-section p {
+    font-size: 18px;
+    font-style: italic;
+}
+
+/* Детали события */
+.details-section {
+    padding: 20px 0;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-details p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* Таймер */
+.countdown-section {
+    padding: 20px 0;
+    background: linear-gradient(135deg, #388e3c, #66bb6a);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.countdown .timer div {
+    background: #3b933f4f;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    display: inline-block;
+}
+
+/* Форма */
+.form-section {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rsvp-form label {
+    font-weight: bold;
+    color: #388e3c;
+    margin-bottom: 5px;
+}
+
+.rsvp-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
