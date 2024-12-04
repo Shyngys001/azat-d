@@ -1,16 +1,19 @@
 /* Общие стили */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background: #f9f9f9;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Playfair Display', serif;
     height: 100vh;
+    color: #333;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Фоновое видео */
@@ -26,10 +29,10 @@ body {
 
 /* Контейнер */
 .container {
-    max-width: 300px;
+    max-width: 350px;
     margin: auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(50, 45, 45, 0.739);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -202,7 +205,7 @@ body {
 
 /* Основной заголовок */
 #main-title {
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     color: #2e7d32;
     text-align: center;
@@ -215,11 +218,15 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+#main-title h1{
+    color: white;
+}
+
 /* Подзаголовок */
 #subtitle {
     font-size: 18px;
     font-weight: 400;
-    color: #555;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 20px;
     line-height: 1.6;
@@ -232,7 +239,7 @@ body {
 
 /* Детали события */
 .event-details {
-    text-align: center;
+    text-align: start;
     margin-top: 20px;
     font-family: 'Arial', sans-serif;
     color: #333;
@@ -242,6 +249,8 @@ body {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 10px;
+    text-align: start;
+
 }
 
 .event-details p strong {
@@ -333,9 +342,9 @@ body {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 15px;
-    letter-spacing: 1px;
-    line-height: 1.4;
-    background: linear-gradient(to right, #2e7d32, #66bb6a);
+    letter-spacing: 6px;
+    line-height: 1.6;
+    background: linear-gradient(to right, #fbfbfb, #66bb6a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: fadeInSlideDown 3s ease-in-out infinite; /* Бесконечная анимация */
@@ -345,7 +354,7 @@ body {
 #subtitle {
     font-size: 18px;
     font-weight: 400;
-    color: #555;
+    color: #e1e1e1;
     text-align: center;
     margin-bottom: 20px;
     line-height: 1.6;
