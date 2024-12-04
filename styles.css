@@ -1,0 +1,263 @@
+/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    height: 100vh;
+}
+
+/* Фоновое видео */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Контейнер */
+.container {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+/* Кнопки переключения языка */
+.language-switch {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    display: inline-flex;
+}
+
+.lang-btn {
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lang-btn:hover {
+    background: #ddd;
+}
+
+.lang-btn.active {
+    background: #388e3c;
+    color: #fff;
+}
+
+/* Контент */
+.content h1 {
+    font-size: 24px;
+    color: #388e3c;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Таймер */
+.countdown {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer div {
+    background: linear-gradient(135deg, #388e3c, #66bb6a);
+    padding: 15px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.timer span {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+.timer small {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Форма */
+.rsvp-form {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rsvp-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #388e3c;
+}
+
+.rsvp-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.guest-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.guest-counter button {
+    background: #388e3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.guest-counter input {
+    width: 50px;
+    text-align: center;
+}
+
+/* Кнопка отправки */
+.submit-btn {
+    background: #388e3c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* Стиль для элемента .gis */
+.gis {
+    margin-top: 100px;
+    width: 50px;
+    border-radius: 9px;
+    cursor: pointer;
+    animation: pulse 2s infinite; /* Анимация плавного увеличения/уменьшения */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Плавные изменения */
+}
+
+/* Анимация плавного увеличения/уменьшения */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Эффект "сверкания" при нажатии */
+.gis:active {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.8); /* Сверкание */
+    transform: scale(1.2); /* Увеличение при нажатии */
+}
+
+
+
+
+/* Основной заголовок */
+#main-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2e7d32;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    background: linear-gradient(to right, #2e7d32, #66bb6a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Подзаголовок */
+#subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 4px solid #2e7d32;
+    padding-left: 15px;
+    max-width: 90%;
+    margin: 0 auto 20px auto;
+}
+
+/* Детали события */
+.event-details {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.event-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.event-details p strong {
+    font-weight: bold;
+    color: #2e7d32;
+    font-size: 16px;
+}
+
+/* Добавление рамки */
+.event-details p {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px 15px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+    max-width: 90%;
+}
