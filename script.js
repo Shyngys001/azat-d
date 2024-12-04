@@ -134,3 +134,46 @@ function toggleAudio() {
     }
 }
 
+
+
+
+// sheets
+function doPost(e) {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const data = JSON.parse(e.postData.contents);
+
+    sheet.appendRow([data.name, data.phone, data.guests, new Date()]);
+
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
+                         .setMimeType(ContentService.MimeType.JSON);
+}
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzYqm3WsaSOKQJUZDEyXasjuLHlgmz3dc-hjflu-TIT34Bt732fqKy3sGY-ZQlrnrKp/exec';
+
+function submitForm(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const guests = document.getElementById('guests').value;
+
+    const formData = { name, phone, guests };
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert('Form submitted successfully!');
+        } else {
+            alert('Error submitting form. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error submitting form. Please try again.');
+    });
+}
