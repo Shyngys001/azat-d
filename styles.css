@@ -711,6 +711,47 @@ p {
     animation: colorChange 6s ease-in-out infinite; /* Increased duration from 3s to 6s */
 }
 
+
+
+.attendance-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.attendance-options input[type="radio"] {
+    display: none; /* Скрыть стандартные радиокнопки */
+}
+
+.attendance-options label.custom-radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(135deg, #f0f0f0, #ddd);
+    border-radius: 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-options label.custom-radio:hover {
+    background: linear-gradient(135deg, #ddd, #bbb);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.attendance-options input[type="radio"]:checked + label.custom-radio {
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
 /* Плавное появление сверху */
 @keyframes fadeInSlideDown {
     0% {

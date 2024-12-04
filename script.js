@@ -18,29 +18,7 @@ function animateOnScroll() {
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
-// Увеличение количества гостей
 
-
-function incrementGuests() {
-    const guestInput = document.getElementById("guests");
-    let currentValue = parseInt(guestInput.value);
-    if (!isNaN(currentValue)) {
-        guestInput.value = currentValue + 1;
-    } else {
-        guestInput.value = 1; // Если текущее значение некорректно, сбросить на 1
-    }
-}
-
-// Уменьшение количества гостей
-function decrementGuests() {
-    const guestInput = document.getElementById("guests");
-    let currentValue = parseInt(guestInput.value);
-    if (!isNaN(currentValue) && currentValue > 1) {
-        guestInput.value = currentValue - 1;
-    } else {
-        guestInput.value = 1; // Минимальное значение - 1
-    }
-}
 
 // Указанная дата для обратного отсчета
 const eventDate = new Date("2024-12-23T17:00:00").getTime();
@@ -72,7 +50,6 @@ function startCountdown() {
 // Запуск таймера каждую секунду
 setInterval(startCountdown, 1000);
 
-// Переключение языков
 const texts = {
     ru: {
         title: "Уважаемые коллеги, партнеры, друзья!",
@@ -82,7 +59,9 @@ const texts = {
         location: "<strong>Место проведения:</strong> г.Костанай, ул.5 Апреля, 64, Ресторан «Тобыл»",
         nameLabel: "Ваше имя",
         phoneLabel: "Телефон",
-        guestsLabel: "Сколько гостей?",
+        attendLabel: "Придете?",
+        yesOption: "Да",
+        noOption: "Нет",
         submitButton: "ОТПРАВИТЬ"
     },
     kz: {
@@ -93,7 +72,9 @@ const texts = {
         location: "<strong>Өтетін орны:</strong> Қостанай қ., 5 Сәуір көшесі, 64, «Тобыл» мейрамханасы",
         nameLabel: "Есіміңіз",
         phoneLabel: "Телефон",
-        guestsLabel: "Қанша адам келесіздер?",
+        attendLabel: "Келесіз бе?",
+        yesOption: "Иә",
+        noOption: "Жоқ",
         submitButton: "ЖІБЕРУ"
     }
 };
@@ -106,14 +87,15 @@ function switchLanguage(lang) {
     document.getElementById("event-location").innerHTML = texts[lang].location;
     document.getElementById("name-label").innerHTML = texts[lang].nameLabel;
     document.getElementById("phone-label").innerHTML = texts[lang].phoneLabel;
-    document.getElementById("guests-label").innerHTML = texts[lang].guestsLabel;
+    document.getElementById("attend-label").innerHTML = texts[lang].attendLabel;
+    document.querySelector("label[for='yes']").innerHTML = texts[lang].yesOption;
+    document.querySelector("label[for='no']").innerHTML = texts[lang].noOption;
     document.getElementById("submit-btn").innerHTML = texts[lang].submitButton;
 
     // Переключение активной кнопки
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.remove("active"));
     document.getElementById(`lang-${lang}`).classList.add("active");
 }
-
 // Инициализация
 switchLanguage("kz");
 startCountdown();
@@ -184,16 +166,25 @@ function toggleAudio() {
 
 // sheets
 // const scriptURL = 'https://script.google.com/macros/s/AKfycbxyz1234567890/exec';
-const scriptURL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzgMo1J3EVIuk6A_Hl5taFuPxEPsnT6V9XJHhEP682hYXkjiq28Ur4gZEenNWzLolIS/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbw0MvY3J9I4ug7CfhHTsdSzlV8lq1Hnx5DJoTO9uOCbUMlo8bVbjklRsXUqq6uaWYPT/exec';
+
 function submitForm(event) {
     event.preventDefault();
 
+    // Сбор данных из формы
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
-    const guests = document.getElementById("guests").value;
+    const attendance = document.querySelector("input[name='attendance']:checked")?.value;
 
-    const formData = { name, phone, guests };
+    // Проверка на выбор значения
+    if (!attendance) {
+        alert("Пожалуйста, выберите 'Иә' или 'Жоқ'.");
+        return;
+    }
 
+    const formData = { name, phone, attendance };
+
+    // Отправка данных в Google Apps Script
     fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -214,29 +205,6 @@ function submitForm(event) {
             alert("Ошибка при отправке формы.");
         });
 }
-
-// Increment the number of guests
-function incrementGuests() {
-    const guestInput = document.getElementById("guests");
-    let currentValue = parseInt(guestInput.value);
-    if (!isNaN(currentValue)) {
-        guestInput.value = currentValue + 1;
-    } else {
-        guestInput.value = 1;
-    }
-}
-
-// Decrement the number of guests
-function decrementGuests() {
-    const guestInput = document.getElementById("guests");
-    let currentValue = parseInt(guestInput.value);
-    if (!isNaN(currentValue) && currentValue > 1) {
-        guestInput.value = currentValue - 1;
-    } else {
-        guestInput.value = 1;
-    }
-}
-
 
 // Запуск конфетти при загрузке страницы
 window.onload = () => {
