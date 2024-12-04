@@ -134,10 +134,34 @@ function toggleAudio() {
 }
 
 // Запускаем аудио при загрузке страницы
-window.onload = () => {
+// Функция для воспроизведения аудио
+function playAudio() {
     const audio = document.getElementById('background-audio');
-    audio.play();
-};
+    audio.volume = 0.5; // Устанавливаем громкость
+
+    audio.play()
+        .then(() => {
+            console.log("Аудио воспроизводится.");
+        })
+        .catch(err => {
+            console.warn("Автовоспроизведение заблокировано:", err);
+            // Ждем взаимодействия пользователя
+            document.body.addEventListener('click', enableAudio, { once: true });
+        });
+}
+
+// Функция для включения аудио после клика
+function enableAudio() {
+    const audio = document.getElementById('background-audio');
+    audio.play()
+        .then(() => {
+            console.log("Аудио воспроизведено после взаимодействия пользователя.");
+        })
+        .catch(err => console.error("Ошибка при воспроизведении:", err));
+}
+
+// Запуск аудио при загрузке страницы
+window.addEventListener('load', playAudio);
 
 // Переключение воспроизведения/паузы
 function toggleAudio() {
@@ -149,13 +173,12 @@ function toggleAudio() {
             .then(() => {
                 audioIcon.className = 'pause-icon'; // Меняем на паузу
             })
-            .catch((err) => console.log('Ошибка при воспроизведении: ', err));
+            .catch(err => console.error('Ошибка при воспроизведении:', err));
     } else {
         audio.pause();
         audioIcon.className = 'play-icon'; // Меняем на плей
     }
 }
-
 
 
 
