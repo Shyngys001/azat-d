@@ -1,4 +1,26 @@
+// Function to check if an element is in the viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top <= (window.innerHeight || document.documentElement.clientHeight);
+}
+
+// Add scroll event listener to trigger animation
+function animateOnScroll() {
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach(element => {
+        if (isInViewport(element)) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+// Run the function on scroll and page load
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+
 // Увеличение количества гостей
+
+
 function incrementGuests() {
     const guestInput = document.getElementById("guests");
     let currentValue = parseInt(guestInput.value);
@@ -138,20 +160,11 @@ function toggleAudio() {
 
 
 // sheets
-function doPost(e) {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    const data = JSON.parse(e.postData.contents);
 
-    sheet.appendRow([data.name, data.phone, data.guests, new Date()]);
-
-    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
-                         .setMimeType(ContentService.MimeType.JSON);
-}
-
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzYqm3WsaSOKQJUZDEyXasjuLHlgmz3dc-hjflu-TIT34Bt732fqKy3sGY-ZQlrnrKp/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz2GmUhWIjgdPJoN9Sqy8A6zFFD67d6VJYP0c6m4yY7dwVmDCpWAY6NsuGM4K-1WHes/exec';
 
 function submitForm(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent form from reloading the page
 
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
@@ -162,18 +175,47 @@ function submitForm(event) {
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert('Form submitted successfully!');
-        } else {
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === "success") {
+                alert('Form submitted successfully!');
+            } else {
+                alert('Error submitting form. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             alert('Error submitting form. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error submitting form. Please try again.');
-    });
+        });
+}
+
+// Increment the number of guests
+function incrementGuests() {
+    const guestInput = document.getElementById("guests");
+    let currentValue = parseInt(guestInput.value);
+    if (!isNaN(currentValue)) {
+        guestInput.value = currentValue + 1;
+    } else {
+        guestInput.value = 1;
+    }
+}
+
+// Decrement the number of guests
+function decrementGuests() {
+    const guestInput = document.getElementById("guests");
+    let currentValue = parseInt(guestInput.value);
+    if (!isNaN(currentValue) && currentValue > 1) {
+        guestInput.value = currentValue - 1;
+    } else {
+        guestInput.value = 1;
+    }
 }
