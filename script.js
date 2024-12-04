@@ -183,41 +183,35 @@ function toggleAudio() {
 
 
 // sheets
-
-const scriptURL = 'https://script.google.com/macros/s/AKfycbz2GmUhWIjgdPJoN9Sqy8A6zFFD67d6VJYP0c6m4yY7dwVmDCpWAY6NsuGM4K-1WHes/exec';
-
+// const scriptURL = 'https://script.google.com/macros/s/AKfycbxyz1234567890/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyGXhN8uwV7WpGuBv2o69gpEaPGDehH2QYlIbePjAq02SNp4iyDvknTznWI7qBdJ5GM/exec';
 function submitForm(event) {
-    event.preventDefault(); // Prevent form from reloading the page
+    event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const guests = document.getElementById('guests').value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const guests = document.getElementById("guests").value;
 
     const formData = { name, phone, guests };
 
     fetch(scriptURL, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(formData),
         headers: {
-            'Content-Type': 'application/json',
-        },
+            "Content-Type": "application/json"
+        }
     })
         .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
+            if (!response.ok) throw new Error("Ошибка при отправке формы");
             return response.json();
         })
         .then(data => {
-            if (data.status === "success") {
-                alert('Form submitted successfully!');
-            } else {
-                alert('Error submitting form. Please try again.');
-            }
+            console.log("Успешно отправлено:", data);
+            alert("Форма отправлена успешно!");
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error submitting form. Please try again.');
+            console.error("Ошибка:", error);
+            alert("Ошибка при отправке формы.");
         });
 }
 
