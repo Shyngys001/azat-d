@@ -377,6 +377,9 @@ body {
     max-width: 100%;
     margin: 0 auto;
     animation: fadeInSlideDown 4s ease-in-out infinite; /* Бесконечная анимация */
+    word-wrap: break-word; /* Для переноса длинных слов */
+    overflow-wrap: break-word; /* Совместимость с разными браузерами */
+    white-space: normal;
     word-wrap: break-word; 
 }
 
