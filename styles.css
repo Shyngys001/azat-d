@@ -216,7 +216,7 @@ body {
 
 
 /* Основной заголовок */
-#main-title {
+#main-title{
     font-size: 25px;
     font-weight: bold;
     color: #2e7d32;
@@ -348,14 +348,14 @@ body {
 }
 
 /* Основной заголовок с бесконечной анимацией */
-#main-title {
-    font-size: 28px;
+#main-title, #main-title2 {
+    font-size: 15px;
     font-weight: bold;
     color: #2e7d32;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 15px;
-    letter-spacing: 6px;
+    letter-spacing: 3px;
     line-height: 1.6;
     background: linear-gradient(to right, #fbfbfb, #66bb6a);
     -webkit-background-clip: text;
@@ -365,7 +365,7 @@ body {
 
 /* Подзаголовок с бесконечной анимацией */
 #subtitle {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     color: #e1e1e1;
     text-align: center;

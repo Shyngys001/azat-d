@@ -62,7 +62,8 @@ const texts = {
         attendLabel: "Придете?",
         yesOption: "Да",
         noOption: "Нет",
-        submitButton: "ОТПРАВИТЬ"
+        submitButton: "ОТПРАВИТЬ",
+        footerText: "С уважением, семья Ахметовых"
     },
     kz: {
         title: "Құрметті әріптестер, серіктестер, достар!",
@@ -75,12 +76,14 @@ const texts = {
         attendLabel: "Келесіз бе?",
         yesOption: "Иә",
         noOption: "Жоқ",
-        submitButton: "ЖІБЕРУ"
+        submitButton: "ЖІБЕРУ",
+        footerText: "Құрметпен Ахметовтар отбасы"
     }
 };
 
 function switchLanguage(lang) {
     document.getElementById("main-title").innerHTML = texts[lang].title;
+    document.getElementById("main-title2").innerHTML = texts[lang].footerText;
     document.getElementById("subtitle").innerHTML = texts[lang].subtitle;
     document.getElementById("event-date").innerHTML = texts[lang].date;
     document.getElementById("event-time").innerHTML = texts[lang].time;
