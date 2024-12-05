@@ -366,11 +366,11 @@ body {
 /* Подзаголовок с бесконечной анимацией */
 #subtitle, #main-title2 {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
     color: #e1e1e1;
     text-align: center;
     margin-bottom: 20px;
-    line-height: 1.6;
+    line-height: 1.4;
     font-style: italic;
     border-left: 4px solid #2e7d32;
     padding-left: 15px;
