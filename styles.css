@@ -372,11 +372,12 @@ body {
     margin-bottom: 20px;
     line-height: 1.4;
     font-style: italic;
-    border-left: 4px solid #2e7d32;
-    padding-left: 15px;
+    border-left: 0px solid #2e7d32;
+    padding-left: 0px;
     max-width: 90%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
     animation: fadeInSlideDown 4s ease-in-out infinite; /* Бесконечная анимация */
+    word-wrap: break-word; 
 }
 
 /* Детали события с бесконечной анимацией */
