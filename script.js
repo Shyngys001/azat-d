@@ -67,7 +67,7 @@ const texts = {
     },
     kz: {
         title: "Құрметті әріптестер, серіктестер, достар!",
-        subtitle: "Жаңа жыл қарсаңында біз Сіздерді біздің <br>ТОО «Азат и Д»-ның <br>25 жылдығын атап өтуге шақырамыз",
+        subtitle: "Жаңа жыл қарсаңында біз Сіздерді біздің <br> ТОО «Азат и Д»-ның <br>25 жылдығын атап өтуге шақырамыз",
         date: "<strong>Өтетін күні:</strong> 23 желтоқсан 2024",
         time: "<strong>Уақыты:</strong> 17:00",
         location: "<strong>Өтетін орны:</strong> Қостанай қ., 5 Сәуір көшесі, 64, «Тобыл» мейрамханасы",
@@ -81,17 +81,7 @@ const texts = {
     }
 };
 
-// Переменная для отслеживания текущего языка
-let currentLanguage = "kz";
-
 function switchLanguage(lang) {
-    if (currentLanguage === lang) {
-        // Если язык уже выбран, ничего не делаем
-        return;
-    }
-
-    currentLanguage = lang;
-
     const elementsToUpdate = {
         "main-title": texts[lang].title,
         "main-title2": texts[lang].footerText,
