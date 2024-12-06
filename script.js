@@ -100,6 +100,11 @@ function switchLanguage(lang) {
         const element = document.getElementById(id);
         if (element) {
             element.innerHTML = elementsToUpdate[id];
+
+            // Принудительная перерисовка (хак для Safari)
+            element.style.display = "none"; // Временно скрыть
+            void element.offsetHeight; // Триггер обновления DOM
+            element.style.display = ""; // Показать обратно
         }
     }
 
@@ -109,16 +114,11 @@ function switchLanguage(lang) {
     if (yesLabel) yesLabel.innerHTML = texts[lang].yesOption;
     if (noLabel) noLabel.innerHTML = texts[lang].noOption;
 
-    // Обновление активной кнопки языка
+    // Переключение активной кнопки языка
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.remove("active"));
     const activeButton = document.getElementById(`lang-${lang}`);
     if (activeButton) activeButton.classList.add("active");
 }
-
-element.classList.add("force-redraw");
-setTimeout(() => {
-    element.classList.remove("force-redraw");
-}, 50);
 
 // Инициализация языка при загрузке страницы
 switchLanguage("kz");
