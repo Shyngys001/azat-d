@@ -82,24 +82,40 @@ const texts = {
 };
 
 function switchLanguage(lang) {
-    document.getElementById("main-title").innerHTML = texts[lang].title;
-    document.getElementById("main-title2").innerHTML = texts[lang].footerText;
-    document.getElementById("subtitle").innerHTML = texts[lang].subtitle;
-    document.getElementById("event-date").innerHTML = texts[lang].date;
-    document.getElementById("event-time").innerHTML = texts[lang].time;
-    document.getElementById("event-location").innerHTML = texts[lang].location;
-    document.getElementById("name-label").innerHTML = texts[lang].nameLabel;
-    document.getElementById("phone-label").innerHTML = texts[lang].phoneLabel;
-    document.getElementById("attend-label").innerHTML = texts[lang].attendLabel;
-    document.querySelector("label[for='yes']").innerHTML = texts[lang].yesOption;
-    document.querySelector("label[for='no']").innerHTML = texts[lang].noOption;
-    document.getElementById("submit-btn").innerHTML = texts[lang].submitButton;
+    const elementsToUpdate = {
+        "main-title": texts[lang].title,
+        "main-title2": texts[lang].footerText,
+        "subtitle": texts[lang].subtitle,
+        "event-date": texts[lang].date,
+        "event-time": texts[lang].time,
+        "event-location": texts[lang].location,
+        "name-label": texts[lang].nameLabel,
+        "phone-label": texts[lang].phoneLabel,
+        "attend-label": texts[lang].attendLabel,
+        "submit-btn": texts[lang].submitButton
+    };
 
-    // Переключение активной кнопки
+    // Обновление текста для элементов
+    for (const id in elementsToUpdate) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.innerHTML = elementsToUpdate[id];
+        }
+    }
+
+    // Обновление текста для радио-кнопок
+    const yesLabel = document.querySelector("label[for='yes']");
+    const noLabel = document.querySelector("label[for='no']");
+    if (yesLabel) yesLabel.innerHTML = texts[lang].yesOption;
+    if (noLabel) noLabel.innerHTML = texts[lang].noOption;
+
+    // Обновление активной кнопки языка
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.remove("active"));
-    document.getElementById(`lang-${lang}`).classList.add("active");
+    const activeButton = document.getElementById(`lang-${lang}`);
+    if (activeButton) activeButton.classList.add("active");
 }
-// Инициализация
+
+// Инициализация языка при загрузке страницы
 switchLanguage("kz");
 startCountdown();
 
