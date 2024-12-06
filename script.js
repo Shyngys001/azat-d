@@ -49,7 +49,6 @@ function startCountdown() {
 
 // Запуск таймера каждую секунду
 setInterval(startCountdown, 1000);
-
 const texts = {
     ru: {
         title: "Уважаемые коллеги, партнеры, друзья!",
@@ -81,7 +80,14 @@ const texts = {
     }
 };
 
+// Переменная для текущего языка
+let currentLanguage = "kz";
+
 function switchLanguage(lang) {
+    if (currentLanguage === lang) return; // Если язык уже выбран, ничего не делаем
+
+    currentLanguage = lang;
+
     const elementsToUpdate = {
         "main-title": texts[lang].title,
         "main-title2": texts[lang].footerText,
@@ -95,11 +101,15 @@ function switchLanguage(lang) {
         "submit-btn": texts[lang].submitButton
     };
 
-    // Обновление текста для элементов
+    // Скрываем элементы перед обновлением текста
     for (const id in elementsToUpdate) {
         const element = document.getElementById(id);
         if (element) {
-            element.innerHTML = elementsToUpdate[id];
+            element.style.opacity = "0"; // Прозрачность
+            setTimeout(() => {
+                element.innerHTML = elementsToUpdate[id]; // Обновляем текст
+                element.style.opacity = "1"; // Возвращаем видимость
+            }, 300); // Задержка для плавного обновления
         }
     }
 
@@ -116,7 +126,9 @@ function switchLanguage(lang) {
 }
 
 // Инициализация языка при загрузке страницы
-switchLanguage("kz");
+document.addEventListener("DOMContentLoaded", () => {
+    switchLanguage("kz");
+});
 startCountdown();
 
 
