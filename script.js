@@ -80,8 +80,11 @@ const texts = {
         footerText: "Құрметпен Ахметовтар отбасы"
     }
 };
-
 function switchLanguage(lang) {
+    if (currentLanguage === lang) return;
+
+    currentLanguage = lang;
+
     const elementsToUpdate = {
         "main-title": texts[lang].title,
         "main-title2": texts[lang].footerText,
@@ -95,26 +98,27 @@ function switchLanguage(lang) {
         "submit-btn": texts[lang].submitButton
     };
 
-    // Обновление текста для элементов
     for (const id in elementsToUpdate) {
         const element = document.getElementById(id);
         if (element) {
             element.innerHTML = elementsToUpdate[id];
+
+            // Принудительное обновление DOM
+            element.style.display = "none"; // Скрыть элемент
+            void element.offsetHeight; // Триггер перерисовки
+            element.style.display = ""; // Показать обратно
         }
     }
 
-    // Обновление текста для радио-кнопок
     const yesLabel = document.querySelector("label[for='yes']");
     const noLabel = document.querySelector("label[for='no']");
     if (yesLabel) yesLabel.innerHTML = texts[lang].yesOption;
     if (noLabel) noLabel.innerHTML = texts[lang].noOption;
 
-    // Обновление активной кнопки языка
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.remove("active"));
     const activeButton = document.getElementById(`lang-${lang}`);
     if (activeButton) activeButton.classList.add("active");
 }
-
 // Инициализация языка при загрузке страницы
 switchLanguage("kz");
 startCountdown();
