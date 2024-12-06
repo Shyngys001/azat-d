@@ -570,6 +570,14 @@ body {
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.force-redraw {
+    transform: scale(1.01); /* Небольшое масштабирование */
+}
+
+[data-animate] {
+    transition: none !important; /* Отключите анимации временно */
+}
+
 /* Make the sections visible */
 [data-animate].visible {
     opacity: 1;
