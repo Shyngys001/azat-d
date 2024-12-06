@@ -565,13 +565,16 @@ body {
 
 /* Initial state for animated sections */
 [data-animate] {
-    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 /* Make the sections visible */
-/* [data-animate].visible {
+[data-animate].visible {
     opacity: 1;
     transform: translateY(0);
-} */
+}
 
 /* #calendar  */
 /* Minimalist Calendar */
