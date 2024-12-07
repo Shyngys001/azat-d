@@ -190,43 +190,37 @@ function toggleAudio() {
 
 // sheets
 // const scriptURL = 'https://script.google.com/macros/s/AKfycbxyz1234567890/exec';
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw0MvY3J9I4ug7CfhHTsdSzlV8lq1Hnx5DJoTO9uOCbUMlo8bVbjklRsXUqq6uaWYPT/exec';
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5ZffZYgHcMiCpza25mKge2VkmYbnpuSdtEU_-3Umoj7kgXM6gUvyT3cSjo56Pkso/exec";
 
 function submitForm(event) {
     event.preventDefault();
 
-    // Сбор данных из формы
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const attendance = document.querySelector("input[name='attendance']:checked")?.value;
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const attendance = document.querySelector('input[name="attendance"]:checked').value;
 
-    // Проверка на выбор значения
-    if (!attendance) {
-        alert("Пожалуйста, выберите 'Иә' или 'Жоқ'.");
-        return;
-    }
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('attendance', attendance);
 
-    const formData = { name, phone, attendance };
-
-    // Отправка данных в Google Apps Script
-    fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-            "Content-Type": "application/json"
-        }
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
     })
-        .then(response => {
-            if (!response.ok) throw new Error("Ошибка при отправке формы");
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log("Успешно отправлено:", data);
-            alert("Форма отправлена успешно!");
+            if (data.result === "success") {
+                alert('Данные успешно отправлены!');
+                document.querySelector('.rsvp-form').reset();
+            } else {
+                alert('Ошибка при отправке данных.');
+            }
         })
         .catch(error => {
-            console.error("Ошибка:", error);
-            alert("Ошибка при отправке формы.");
+            console.error('Ошибка:', error);
+            alert('Ошибка при отправке данных.');
         });
 }
 
