@@ -1,152 +1,569 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agriculture Farm Invitation</title>
-    <link rel="stylesheet" href="styles.css">
-</head><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-<link rel="icon" href="data:;base64,=">
-<body><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
-    <!-- Фоновое видео -->
-    <video autoplay loop muted playsinline class="background-video">
-        <source src="video2.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Девичник Рашиды | 14 Февраля</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF69B4;
+            --secondary: #FFD700;
+            --accent: #FF1493;
+            --text: #4A4A4A;
+        }
 
-    <!-- Контейнер -->
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(255,192,203,0.1) 0%, rgba(255,255,255,0.9) 100%),
+                        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,215,0,0.05) 10px, rgba(255,215,0,0.05) 20px);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 180deg, var(--primary), var(--secondary), var(--primary));
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .title {
+            font-family: 'Lobster', cursive;
+            color: var(--accent);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.5);
+        }
+
+        .details {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,215,0,0.05);
+            border-radius: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .detail-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .countdown-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .invitation-text {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 1rem;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .invitation-text p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            line-height: 1.8;
+            color: var(--accent);
+        }
+
+        .invitation-text::before {
+            content: '✉️';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: white;
+            padding: 0 10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .rsvp-form {
+            margin-top: 3rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 1.8rem;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.6rem;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 4px 6px -1px rgba(255,105,180,0.1);
+            background: white;
+        }
+
+        input:focus + i {
+            opacity: 1;
+        }
+
+        .attendance-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .attendance-btn {
+            padding: 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.6rem;
+            background: white;
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .attendance-btn.active {
+            border-color: var(--primary);
+            background: rgba(255,105,180,0.05);
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(255,105,180,0.1);
+        }
+
+        .attendance-btn i {
+            font-size: 1.2em;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 0.6rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button[type="submit"] i {
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #ff4d9e;
+            box-shadow: 0 4px 12px rgba(255,77,158,0.2);
+        }
+
+        button[type="submit"]:hover i {
+            transform: translateX(3px);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .number {
+                font-size: 2rem;
+            }
+
+            .invitation-text p {
+                font-size: 1rem;
+            }
+
+            input {
+                padding-left: 2.5rem;
+            }
+            
+            .input-wrapper i {
+                left: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .countdown {
+                grid-template-columns: 1fr;
+            }
+
+            .attendance-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .attendance-btn span {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="container">
-        <!-- Переключение языка -->
-        <div class="language-switch">
-            <button id="lang-ru" class="lang-btn active" onclick="switchLanguage('ru')">РУ</button>
-            <button id="lang-kz" class="lang-btn" onclick="switchLanguage('kz')">КЗ</button>
-        </div>
-
-       
-
-        <!-- Блок с контентом -->
-        <section class="content">
-            <h1 id="main-title" data-animate>Құрметті әріптестер, серіктестер, достар!</h1>
-            <p id="subtitle" data-animate>
-                Жаңа жыл қарсаңында біз Сіздерді біздің ТОО «Азат и Д»-ның 25 жылдығын атап өтуге шақырамыз
-            </p>
-            <h1 id="main-title2">Құрметпен Ахметовтар отбасы</h1>
-
-            <div class="calendar" data-animate>
-                <div class="week">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>6</span>
-                    <span>7</span>
-                </div>
-                <div class="week">
-                    <span>8</span>
-                    <span>9</span>
-                    <span>10</span>
-                    <span>11</span>
-                    <span>12</span>
-                    <span>13</span>
-                    <span>14</span>
-                </div>
-                <div class="week">
-                    <span>15</span>
-                    <span>16</span>
-                    <span>17</span>
-                    <span>18</span>
-                    <span>19</span>
-                    <span>20</span>
-                    <span>21</span>
-                </div>
-                <div class="week">
-                    <span>22</span>
-                    <span class="highlight">23</span> <!-- Highlighted 23rd -->
-                    <span>24</span>
-                    <span>25</span>
-                    <span>26</span>
-                    <span>27</span>
-                    <span>28</span>
-                </div>
-                <div class="week">
-                    <span>29</span>
-                    <span>30</span>
-                    <span>31</span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <div class="card">
+            <div class="header">
+                <h1 class="title" style="font-size: 25px;">✨ Девичник Рашиды ✨</h1>
+                <div class="invitation-text">
+                    <p>Дорогие гости!</p>
+                    <p>Приглашаю Вас на девичник, посвященный моему дню рождения!</p>
+                    <p>Буду рада видеть Вас 14 февраля в 17:00<br>в ресторане "Тобыл"</p>
                 </div>
             </div>
 
-             <!-- Аудио -->
-        
-
-            <div class="address" data-animate>
-                <a href="https://go.2gis.com/zrhkz5">
-                    <img src="2gis.png" alt="" class="gis">
-                </a>
-                <div class="audio-player">
-                    <audio id="background-audio" loop>
-                        <source src="Qazaqsha.mp3" type="audio/mp3">
-                        Ваш браузер не поддерживает аудио.
-                    </audio>
-                    <button id="audio-control" onclick="toggleAudio()">
-                        <span id="audio-icon" class="play-icon"></span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Таймер -->
-            <div class="countdown" data-animate>
-                <div class="timer">
-                    <div><span id="days">24</span><small>day</small></div>
-                    <div><span id="hours">00</span><small>hour</small></div>
-                    <div><span id="minutes">00</span><small>min</small></div>
-                    <div><span id="seconds">00</span><small>sec</small></div>
-                </div>
-            </div>
-
-            <!-- Форма подтверждения -->
-            <section class="form-section" data-animate>
-                <form class="rsvp-form" onsubmit="submitForm(event)">
-                    <label for="name" id="name-label">Есіміңіз</label>
-                    <input type="text" id="name" name="name" placeholder="Аты-жөніңіз" required>
-                    
-                    <label for="phone" id="phone-label">Телефон</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+7_(___)_____" required>
-                    
-                    <label id="attend-label">Келесіз бе?</label>
-                    <div class="attendance-options">
-                        <input type="radio" id="yes" name="attendance" value="Иә" required>
-                        <label for="yes" class="custom-radio">Иә</label>
-                        <input type="radio" id="no" name="attendance" value="Жоқ">
-                        <label for="no" class="custom-radio">Жоқ</label>
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <h3>14 февраля 2025</h3>
+                        <p>17:00 - начало праздника</p>
                     </div>
-                    
-                    <button type="submit" class="submit-btn" id="submit-btn">ЖІБЕРУ</button>
-                </form>
-            </section>
-            <div class="event-details" data-animate>
-                <p id="event-date"><strong>Өтетін күні:</strong> 23 желтоқсан 2024</p>
-                <p id="event-time"><strong>Уақыты:</strong> 17:00</p>
-                <p id="event-location"><strong>Өтетін орны:</strong> Қостанай қ., 5 Сәуір көшесі, 64, «Тобыл» мейрамханасы</p>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Ресторан "Тобыл"</h3>
+                        <p>г. Костанай, ул. 5 Апреля, 64</p>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-tshirt"></i>
+                    <div>
+                        <h3>Дресс-код</h3>
+                        <p>Национальный стиль</p>
+                    </div>
+                </div>
             </div>
-        </section>
-        <footer class="footer">
-            <p style="color: white;">Разработано в <a style="color: #66bb6a;" href="https://wa.me/77479894879" target="_blank">UnioDev</a></p>
-        </footer>
+
+            <div class="countdown">
+                <div class="countdown-box">
+                    <div class="number" id="days">0</div>
+                    <div class="label">Дней</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="hours">0</div>
+                    <div class="label">Часов</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="minutes">0</div>
+                    <div class="label">Минут</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="seconds">0</div>
+                    <div class="label">Секунд</div>
+                </div>
+            </div>
+
+            <form class="rsvp-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" 
+                               id="phone" 
+                               placeholder="Ваш телефон (только цифры)" 
+                               required
+                               inputmode="numeric">
+                    </div>
+                </div>
+
+                <div class="attendance-buttons">
+                    <div class="attendance-btn" data-attendance="Приду" onclick="selectAttendance(this)">
+                        <i class="fas fa-check-circle"></i>
+                        <span>С радостью буду!</span>
+                    </div>
+                    <div class="attendance-btn" data-attendance="Не смогу" onclick="selectAttendance(this)">
+                        <i class="fas fa-times-circle"></i>
+                        <span>К сожалению, не смогу</span>
+                    </div>
+                </div>
+                <input type="hidden" name="attendance" id="attendanceInput" required>
+
+                <button type="submit">
+                    <span>Подтвердить участие</span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </form>
+        </div>
     </div>
-    
-   
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
-    
-  
+
+    <script>
+        let selectedAttendance = null;
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5ZffZYgHcMiCpza25mKge2VkmYbnpuSdtEU_-3Umoj7kgXM6gUvyT3cSjo56Pkso/exec";
+
+        const updateCountdown = () => {
+            const eventDate = new Date("2025-02-14T17:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff < 0) {
+                document.querySelector('.countdown').innerHTML = `
+                    <div class="countdown-box" style="grid-column: 1 / -1">
+                        <div class="number">🎉</div>
+                        <div class="label">Событие началось!</div>
+                    </div>`;
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        };
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function selectAttendance(button) {
+            document.querySelectorAll('.attendance-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            selectedAttendance = button.dataset.attendance;
+            document.getElementById('attendanceInput').value = selectedAttendance;
+        }
+
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            return cleaned.length >= 10 && cleaned.length <= 12;
+        }
+
+        function showNotification(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `notification ${type}`;
+            alert.textContent = message;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function resetForm() {
+            document.querySelector('.rsvp-form').reset();
+            document.querySelectorAll('.attendance-btn').forEach(btn => btn.classList.remove('active'));
+            selectedAttendance = null;
+            document.getElementById('attendanceInput').value = '';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            if (!selectedAttendance) {
+                showNotification('Пожалуйста, выберите вариант участия', 'error');
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!validatePhone(phone)) {
+                showNotification('Введите номер телефона (10-12 цифр)', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('phone', phone.replace(/\D/g, ''));
+            formData.append('attendance', selectedAttendance);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Ошибка сети');
+                return response.json();
+            })
+            .then(data => {
+                if (data.result === "success") {
+                    showNotification(`Спасибо, ${name}! Ваш выбор: ${selectedAttendance}`, 'success');
+                    resetForm();
+                } else throw new Error('Ошибка сервера');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Ошибка при отправке', 'error');
+            });
+        }
+
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+        }, { threshold: 0.1 });
+        observer.observe(document.querySelector('.card'));
+
+        window.addEventListener('resize', () => {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        });
+    </script>
 </body>
 </html>
