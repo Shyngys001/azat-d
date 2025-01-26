@@ -1,4 +1,678 @@
+
+
+
+
+
 <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Девичник Рашиды | Рашиданың әйелдер кеші</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A2A2A;
+            --accent: #B76E79;
+            --light: #F8F8F8;
+            --text: #444444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin: 2rem 0;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .language-switcher {
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+            justify-content: center;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            color: var(--accent);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .invitation-text {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(183,110,121,0.1);
+            border-bottom: 1px solid rgba(183,110,121,0.1);
+        }
+
+        .invitation-text p {
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .invitation-text p:first-child {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .details {
+            display: grid;
+            gap: 1.2rem;
+            margin: 3rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(183,110,121,0.03);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .detail-item i {
+            color: var(--accent);
+            font-size: 1.4rem;
+            min-width: 35px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .countdown-box {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .label {
+            color: var(--text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .rsvp-form {
+            margin-top: 3rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 3rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(183,110,121,0.1);
+            outline: none;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        .attendance-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+
+        .attendance-btn {
+            padding: 1.4rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .attendance-btn.active {
+            border-color: var(--accent);
+            background: rgba(183,110,121,0.05);
+            color: var(--accent);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1.4rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background: #9a5a63;
+            transform: translateY(-2px);
+        }
+
+        .music-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .music-notification:hover {
+            transform: scale(1.1);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.2rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .number {
+                font-size: 2.2rem;
+            }
+
+            .invitation-text p:first-child {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .countdown {
+                grid-template-columns: 1fr;
+            }
+
+            .attendance-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.2rem;
+            }
+
+            .input-wrapper i {
+                left: 1rem;
+            }
+
+            input {
+                padding-left: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" loop hidden>
+        <source src="birth.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элементы.
+    </audio>
+
+    <div class="music-notification" onclick="handleMusicControl()">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="changeLanguage('kz')">🇰🇿</button>
+                    <button class="lang-btn active" onclick="changeLanguage('ru')">🇷🇺</button>
+                </div>
+                <h1 class="title" style="font-size: 50px; width: 100%;" data-i18n="title"></h1>
+                <div class="invitation-text">
+                    <p data-i18n="invitation1"></p>
+                    <p data-i18n="invitation2"></p>
+                    <p data-i18n="invitation3"></p>
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <h3 data-i18n="date"></h3>
+                        <p data-i18n="time"></p>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3 data-i18n="placeTitle"></h3>
+                        <p data-i18n="address"></p>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-tshirt"></i>
+                    <div>
+                        <h3 data-i18n="dressCodeTitle"></h3>
+                        <p data-i18n="dressCode"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown-box">
+                    <div class="number" id="days">0</div>
+                    <div class="label" data-i18n="days"></div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="hours">0</div>
+                    <div class="label" data-i18n="hours"></div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="minutes">0</div>
+                    <div class="label" data-i18n="minutes"></div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="seconds">0</div>
+                    <div class="label" data-i18n="seconds"></div>
+                </div>
+            </div>
+
+            <form class="rsvp-form" onsubmit="submitForm(event)">
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="name" data-i18n-placeholder="namePlaceholder" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" 
+                           id="phone" 
+                           data-i18n-placeholder="phonePlaceholder" 
+                           required
+                           inputmode="numeric">
+                </div>
+
+                <div class="attendance-buttons">
+                    <div class="attendance-btn" data-attendance="Приду" onclick="selectAttendance(this)">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="attendYes"></span>
+                    </div>
+                    <div class="attendance-btn" data-attendance="Не смогу" onclick="selectAttendance(this)">
+                        <i class="fas fa-times-circle"></i>
+                        <span data-i18n="attendNo"></span>
+                    </div>
+                </div>
+                <input type="hidden" name="attendance" id="attendanceInput" required>
+
+                <button type="submit">
+                    <span data-i18n="submitButton"></span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedAttendance = null;
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5ZffZYgHcMiCpza25mKge2VkmYbnpuSdtEU_-3Umoj7kgXM6gUvyT3cSjo56Pkso/exec";
+        let currentLang = localStorage.getItem('lang') || 'ru';
+        const backgroundMusic = document.getElementById('background-music');
+        const musicNotification = document.querySelector('.music-notification');
+
+        const translations = {
+            ru: {
+                title: "✨ Девичник Рашиды ✨",
+                invitation1: "Дорогие леди!",
+                invitation2: "Приглашаю Вас на девичник, посвященный моему дню рождения!",
+                invitation3: "Буду рада видеть Вас 14 февраля в 17:00<br>в ресторане 'Тобыл'",
+                date: "14 февраля 2025",
+                time: "17:00 - начало праздника",
+                placeTitle: "Ресторан 'Тобыл'",
+                address: "г. Костанай, ул. 5 Апреля, 64",
+                dressCodeTitle: "Дресс-код",
+                dressCode: "Национальный костюм",
+                days: "Дней",
+                hours: "Часов",
+                minutes: "Минут",
+                seconds: "Секунд",
+                namePlaceholder: "Ваше имя",
+                phonePlaceholder: "Ваш телефон (только цифры)",
+                attendYes: "С радостью буду!",
+                attendNo: "К сожалению, не смогу",
+                submitButton: "Подтвердить участие",
+                validationAttendance: "Пожалуйста, выберите вариант участия",
+                validationPhone: "Введите номер телефона (10-12 цифр)",
+                successMessage: "Спасибо, %name%! Ваш выбор: %attendance%"
+            },
+            kz: {
+                title: "✨ Рашиданың әйелдер кеші ✨",
+                invitation1: "Құрметті ханымдар!",
+                invitation2: "Туған күніме арналған әйелдер кешіне шақырамын!",
+                invitation3: "Сіздерді 14 ақпанда сағат 17:00<br>'Тобыл' ресторанында күтемін",
+                date: "2025 жылдың 14 ақпаны",
+                time: "Сағат 17:00 басталады",
+                placeTitle: "'Тобыл' рестораны",
+                address: "Қостанай қ., 5 Сәуір көш., 64",
+                dressCodeTitle: "Киім стилі",
+                dressCode: "Ұлттық киім",
+                days: "Күн",
+                hours: "Сағат",
+                minutes: "Минут",
+                seconds: "Секунд",
+                namePlaceholder: "Аты-жөніңіз",
+                phonePlaceholder: "Телефон нөміріңіз (сандармен)",
+                attendYes: "Келемін!",
+                attendNo: "Өкінішке орай, келе алмаймын",
+                submitButton: "Қатысуын растау",
+                validationAttendance: "Қатысу вариантын таңдаңыз",
+                validationPhone: "Телефон нөмірін енгізіңіз (10-12 сан)",
+                successMessage: "Рахмет, %name%! Сіздің таңдауыңыз: %attendance%"
+            }
+        };
+
+        function initLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = translations[currentLang][key] || '';
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                el.placeholder = translations[currentLang][key] || '';
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.includes(currentLang === 'ru' ? '🇷🇺' : '🇰🇿'));
+            });
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            initLanguage();
+            updateCountdown();
+        }
+
+        function handleMusicControl() {
+            if(backgroundMusic.paused) {
+                backgroundMusic.play();
+            } else {
+                backgroundMusic.pause();
+            }
+        }
+
+        function updateCountdown() {
+            const eventDate = new Date("2025-02-14T17:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff < 0) {
+                document.querySelector('.countdown').innerHTML = `
+                    <div class="countdown-box" style="grid-column: 1 / -1">
+                        <div class="number">🎉</div>
+                        <div class="label">${currentLang === 'ru' ? 'Событие началось!' : 'Іс басталды!'}</div>
+                    </div>`;
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        function selectAttendance(button) {
+            document.querySelectorAll('.attendance-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedAttendance = button.dataset.attendance;
+            document.getElementById('attendanceInput').value = selectedAttendance;
+        }
+
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            return cleaned.length >= 10 && cleaned.length <= 12;
+        }
+
+        function showNotification(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `notification ${type}`;
+            alert.textContent = message;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function resetForm() {
+            document.querySelector('.rsvp-form').reset();
+            document.querySelectorAll('.attendance-btn').forEach(btn => btn.classList.remove('active'));
+            selectedAttendance = null;
+            document.getElementById('attendanceInput').value = '';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            if (!selectedAttendance) {
+                showNotification(translations[currentLang].validationAttendance, 'error');
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!validatePhone(phone)) {
+                showNotification(translations[currentLang].validationPhone, 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('phone', phone.replace(/\D/g, ''));
+            formData.append('attendance', selectedAttendance);
+            formData.append('lang', currentLang);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Ошибка сети');
+                return response.json();
+            })
+            .then(data => {
+                if (data.result === "success") {
+                    const message = translations[currentLang].successMessage
+                        .replace('%name%', name)
+                        .replace('%attendance%', selectedAttendance);
+                    showNotification(message, 'success');
+                    resetForm();
+                } else throw new Error('Ошибка сервера');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Ошибка при отправке', 'error');
+            });
+        }
+
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        document.addEventListener('click', function initAudio() {
+            backgroundMusic.play().catch(() => {});
+            backgroundMusic.volume = 0.3;
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
+
+        initLanguage();
+        updateCountdown();
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -762,4 +1436,4 @@
         updateCountdown();
     </script>
 </body>
-</html>
+</html> -->
